@@ -1,4 +1,3 @@
-const { log } = require('console');
 const movieModal = require('../models/movieModel');
 const fs = require('fs');
 
@@ -19,7 +18,6 @@ const addData = async (req, res) => {
         languages: req.body.languages,
         rating: req.body.rating,
         quality: req.body.quality,
-        poster: req.body.poster
     })
     await movieData.save();
 
@@ -35,6 +33,8 @@ const viewMovie = async (req, res) => {
 }
 
 const editMovie = async (req, res) => {
+
+    const { id } = req.params;
 
     let movie = await movieModal.findOne({ _id: id });
 
@@ -69,8 +69,6 @@ const updateMovie = async (req, res) => {
     const updateMovie = await movieModal.findByIdAndUpdate({ _id: id }, updateData, { new: true });
     console.log("updateMovie", updateMovie);
 
-    await updateMovie.save();
-
     res.redirect('/view');
 }
 
@@ -80,8 +78,6 @@ const deleteMovie = async (req, res) => {
 
     const deleteMovie = await movieModal.findByIdAndDelete({ _id: id });
     console.log("deleteMovie", deleteMovie);
-
-    await deleteMovie.save();
 
     res.redirect('/view');
 }
