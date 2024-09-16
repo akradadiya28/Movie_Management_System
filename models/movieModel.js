@@ -7,7 +7,6 @@ const movieSchema = new mongoose.Schema({
     languages: String,
     rating: Number,
     quality: String,
-    poster: String
 })
 
 module.exports = mongoose.model('Movies', movieSchema);

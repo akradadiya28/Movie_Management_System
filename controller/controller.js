@@ -40,7 +40,7 @@ const editMovie = async (req, res) => {
 
     console.log("movie", movie);
 
-    await res.render('edit', { movie });
+    await res.render('edit.ejs', { movie });
 }
 
 const updateMovie = async (req, res) => {
